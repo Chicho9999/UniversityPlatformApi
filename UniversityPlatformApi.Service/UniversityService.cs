@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using UniversityPlatformApi.Models;
+using UniversityPlatformApi.Data.Models;
 using UniversityPlatformApi.Repository.Interfaces;
 using UniversityPlatformApi.Service.Interfaces;
 

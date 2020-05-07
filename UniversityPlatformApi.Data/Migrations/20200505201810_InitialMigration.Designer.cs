@@ -3,10 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UniversityPlatformApi.Models;
+using UniversityPlatformApi.Data.Models;
 
-namespace UniversityPlatformApi.Migrations
+namespace UniversityPlatformApi.Data.Migrations
 {
     [DbContext(typeof(UniversityPlatformDBContext))]
     [Migration("20200505201810_InitialMigration")]
@@ -20,7 +19,7 @@ namespace UniversityPlatformApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("UniversityPlatformApi.Models.School", b =>
+            modelBuilder.Entity("UniversityPlatformApi.Data.Models.School", b =>
                 {
                     b.Property<int>("SchoolId")
                         .ValueGeneratedOnAdd()
@@ -43,7 +42,7 @@ namespace UniversityPlatformApi.Migrations
                     b.ToTable("Schools");
                 });
 
-            modelBuilder.Entity("UniversityPlatformApi.Models.University", b =>
+            modelBuilder.Entity("UniversityPlatformApi.Data.Models.University", b =>
                 {
                     b.Property<int>("UniversityId")
                         .ValueGeneratedOnAdd()
@@ -58,9 +57,9 @@ namespace UniversityPlatformApi.Migrations
                     b.ToTable("Universities");
                 });
 
-            modelBuilder.Entity("UniversityPlatformApi.Models.School", b =>
+            modelBuilder.Entity("UniversityPlatformApi.Data.Models.School", b =>
                 {
-                    b.HasOne("UniversityPlatformApi.Models.University", "University")
+                    b.HasOne("UniversityPlatformApi.Data.Models.University", "University")
                         .WithMany()
                         .HasForeignKey("UniversityId")
                         .OnDelete(DeleteBehavior.Cascade)

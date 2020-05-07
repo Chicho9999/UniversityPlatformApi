@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using UniversityPlatformApi.Models;
+using UniversityPlatformApi.Data.Models;
 using UniversityPlatformApi.Repository.Interfaces;
 using UniversityPlatformApi.Service.Interfaces;
 

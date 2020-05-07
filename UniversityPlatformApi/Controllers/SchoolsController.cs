@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using UniversityPlatformApi.Service.Interfaces;
-using UniversityPlatformApi.Models;
+using UniversityPlatformApi.Data.Models;
 
 namespace UniversityPlatformApi.Controllers
 {

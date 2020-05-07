@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace UniversityPlatformApi.Models
+﻿using System.ComponentModel.DataAnnotations;
+namespace UniversityPlatformApi.Data.Models
 {
     public class University
     {
         public int UniversityId { get; set; }
 
         [MaxLength(250)]
+        [Required]
         public string Name { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using UniversityPlatformApi.Service.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UniversityPlatformApi.Models;
+using UniversityPlatformApi.Data.Models;
 using UniversityPlatformApi.Repository.Interfaces;
 
 namespace UniversityPlatformApi.Service

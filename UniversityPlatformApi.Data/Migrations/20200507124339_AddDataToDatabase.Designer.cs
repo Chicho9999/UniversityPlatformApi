@@ -3,13 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniversityPlatformApi.Data.Models;
 
 namespace UniversityPlatformApi.Migrations
 {
     [DbContext(typeof(UniversityPlatformDBContext))]
-    [Migration("20200505203827_RestrictLengtStringProperties")]
-    partial class RestrictLengtStringProperties
+    [Migration("20200507124339_AddDataToDatabase")]
+    partial class AddDataToDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,10 +28,12 @@ namespace UniversityPlatformApi.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
@@ -42,6 +45,36 @@ namespace UniversityPlatformApi.Migrations
                     b.HasIndex("UniversityId");
 
                     b.ToTable("Schools");
+
+                    b.HasData(
+                        new
+                        {
+                            SchoolId = 1,
+                            Address = "Av. Las Heras 727 - CP 3500 Resistencia, Chaco",
+                            Name = "Arquitectura y Urbanismo",
+                            UniversityId = 1
+                        },
+                        new
+                        {
+                            SchoolId = 2,
+                            Address = "A. Illia 368. - CP 3500 Resistencia, Chaco.",
+                            Name = "Artes, Diseño y Ciencias de la Cultura",
+                            UniversityId = 1
+                        },
+                        new
+                        {
+                            SchoolId = 3,
+                            Address = "Sargento Cabral 2131– CP 3400 Corrientes",
+                            Name = "Ciencias Agrarias",
+                            UniversityId = 1
+                        },
+                        new
+                        {
+                            SchoolId = 4,
+                            Address = "Av. Las Heras 727 - CP 3500 Resistencia, Chaco",
+                            Name = "Ciencias Económicas",
+                            UniversityId = 1
+                        });
                 });
 
             modelBuilder.Entity("UniversityPlatformApi.Data.Models.University", b =>
@@ -52,12 +85,35 @@ namespace UniversityPlatformApi.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
                     b.HasKey("UniversityId");
 
                     b.ToTable("Universities");
+
+                    b.HasData(
+                        new
+                        {
+                            UniversityId = 1,
+                            Name = "Universidad Nacional Del Nordeste"
+                        },
+                        new
+                        {
+                            UniversityId = 2,
+                            Name = "Universidad de la Defensa Nacional"
+                        },
+                        new
+                        {
+                            UniversityId = 3,
+                            Name = "Universidad Austral"
+                        },
+                        new
+                        {
+                            UniversityId = 4,
+                            Name = "Universidad Nacional del Arte (UNA)"
+                        });
                 });
 
             modelBuilder.Entity("UniversityPlatformApi.Data.Models.School", b =>

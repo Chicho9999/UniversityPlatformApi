@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using UniversityPlatformApi.Models;
+using UniversityPlatformApi.Data.Models;
 using UniversityPlatformApi.Repository;
 using UniversityPlatformApi.Repository.Interfaces;
 using UniversityPlatformApi.Service;
@@ -29,7 +29,10 @@ namespace UniversityPlatformApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<UniversityPlatformDBContext>(optios => optios.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<UniversityPlatformDBContext>(
+                optios => optios.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), 
+                connection => connection.MigrationsAssembly("UniversityPlatformApi.Data")));
+
             var assembly = Assembly.Load("UniversityPlatformApi.Service");
             //Add Dependency Injection Here..
             AddDependecyToServices(services, assembly);

@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniversityPlatformApi.Data.Models;
 
 namespace UniversityPlatformApi.Migrations
 {
     [DbContext(typeof(UniversityPlatformDBContext))]
-    partial class UniversityPlatformDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200507124746_AddUserDataToDatabase")]
+    partial class AddUserDataToDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
