@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace UniversityPlatformApi.Data.Models
 {
-    public class School
+    public class School : EntityBase
     {
         public int SchoolId { get; set; }
         [MaxLength(250)]

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace UniversityPlatformApi.Data.Models
 {
-    public class University
+    public class University : EntityBase
     {
         public int UniversityId { get; set; }
 
