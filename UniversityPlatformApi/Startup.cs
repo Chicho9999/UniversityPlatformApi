@@ -1,14 +1,20 @@
+using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using UniversityPlatformApi.Data.Models;
 using UniversityPlatformApi.Repository;
 using UniversityPlatformApi.Repository.Interfaces;
+using UniversityPlatformApi.Service;
+using UniversityPlatformApi.Service.Interfaces;
 
 namespace UniversityPlatformApi
 {
@@ -25,14 +31,39 @@ namespace UniversityPlatformApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<UniversityPlatformDBContext>(
-                optios => optios.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), 
+                optios => optios.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 connection => connection.MigrationsAssembly("UniversityPlatformApi.Data")));
 
             var assembly = Assembly.Load("UniversityPlatformApi.Service");
             //Add Dependency Injection Here..
             AddDependecyToServices(services, assembly);
             services.AddScoped<IUow, Uow>();
+
+            //Authentication JWT
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(Configuration.GetValue<string>("JWTSecretKey"))
+                        )
+                    };
+                });
+
+            services.AddSingleton<IAuthService>(
+                new AuthService(
+                    Configuration.GetValue<string>("JWTSecretKey"),
+                    Configuration.GetValue<int>("JWTLifespan")
+                )
+            );
         }
 
 
@@ -40,20 +71,17 @@ namespace UniversityPlatformApi
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
+            else
+                app.UseHsts();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
         public void AddDependecyToServices(IServiceCollection services, Assembly assembly)
         {
@@ -61,7 +89,8 @@ namespace UniversityPlatformApi
             foreach (var type in types)
             {
                 var iface = type.GetInterface("I" + type.Name);
-                services.AddScoped(iface, type);
+                if (iface != null && !iface.Name.Contains("Auth") )
+                    services.AddScoped(iface, type);
             }
         }
     }

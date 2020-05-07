@@ -13,9 +13,11 @@ namespace UniversityPlatformApi.Repository
 
         private IRepository<University> _Universities;
         private IRepository<School> _Schools;
+        private IRepository<User> _Users;
 
         public IRepository<University> Universities => _Universities ??= new GenericRepository<University>(_DBContext);
         public IRepository<School> Schools => _Schools ??= new GenericRepository<School>(_DBContext);
+        public IRepository<User> Users => _Users ??= new GenericRepository<User>(_DBContext);
 
         public Uow(UniversityPlatformDBContext context)
         {

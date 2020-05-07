@@ -10,6 +10,8 @@ namespace UniversityPlatformApi.Repository.Interfaces
     {
         IRepository<University> Universities { get; }
         IRepository<School> Schools { get; }
+        IRepository<User> Users { get; }
+
         void Commit();
         Task CommitAsync();
         Task DisposeAsync();

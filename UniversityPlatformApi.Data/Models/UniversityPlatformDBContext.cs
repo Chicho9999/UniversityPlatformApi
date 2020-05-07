@@ -20,7 +20,8 @@ namespace UniversityPlatformApi.Data.Models
             var user = new User()
             {
                 UserId = 1,
-                Name = "Lisandro",
+                FirstName = "Lisandro",
+                LastName = "Chichi",
                 Username = "LisandroAdmin",
                 Email ="lisandrochichi@gmail.com",
                 Address = "Rivadavia",

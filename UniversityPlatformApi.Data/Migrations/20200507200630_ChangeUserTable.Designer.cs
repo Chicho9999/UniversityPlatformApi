@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniversityPlatformApi.Data.Models;
 
 namespace UniversityPlatformApi.Migrations
 {
     [DbContext(typeof(UniversityPlatformDBContext))]
-    partial class UniversityPlatformDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200507200630_ChangeUserTable")]
+    partial class ChangeUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,10 +47,10 @@ namespace UniversityPlatformApi.Migrations
                     b.Property<int>("UniversityId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UpdatedBy")
+                    b.Property<int>("UpdatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdatedDate")
+                    b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("SchoolId");
@@ -63,36 +65,44 @@ namespace UniversityPlatformApi.Migrations
                             SchoolId = 1,
                             Address = "Av. Las Heras 727 - CP 3500 Resistencia, Chaco",
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 5, 7, 18, 9, 34, 28, DateTimeKind.Local).AddTicks(8136),
+                            CreatedDate = new DateTime(2020, 5, 7, 17, 6, 30, 75, DateTimeKind.Local).AddTicks(838),
                             Name = "Arquitectura y Urbanismo",
-                            UniversityId = 1
+                            UniversityId = 1,
+                            UpdatedBy = 0,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SchoolId = 2,
                             Address = "A. Illia 368. - CP 3500 Resistencia, Chaco.",
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 5, 7, 18, 9, 34, 28, DateTimeKind.Local).AddTicks(8202),
+                            CreatedDate = new DateTime(2020, 5, 7, 17, 6, 30, 75, DateTimeKind.Local).AddTicks(929),
                             Name = "Artes, Diseño y Ciencias de la Cultura",
-                            UniversityId = 1
+                            UniversityId = 1,
+                            UpdatedBy = 0,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SchoolId = 3,
                             Address = "Sargento Cabral 2131– CP 3400 Corrientes",
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 5, 7, 18, 9, 34, 28, DateTimeKind.Local).AddTicks(8205),
+                            CreatedDate = new DateTime(2020, 5, 7, 17, 6, 30, 75, DateTimeKind.Local).AddTicks(932),
                             Name = "Ciencias Agrarias",
-                            UniversityId = 1
+                            UniversityId = 1,
+                            UpdatedBy = 0,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             SchoolId = 4,
                             Address = "Av. Las Heras 727 - CP 3500 Resistencia, Chaco",
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 5, 7, 18, 9, 34, 28, DateTimeKind.Local).AddTicks(8207),
+                            CreatedDate = new DateTime(2020, 5, 7, 17, 6, 30, 75, DateTimeKind.Local).AddTicks(933),
                             Name = "Ciencias Económicas",
-                            UniversityId = 1
+                            UniversityId = 1,
+                            UpdatedBy = 0,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -114,10 +124,10 @@ namespace UniversityPlatformApi.Migrations
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
 
-                    b.Property<int?>("UpdatedBy")
+                    b.Property<int>("UpdatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdatedDate")
+                    b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("UniversityId");
@@ -129,29 +139,37 @@ namespace UniversityPlatformApi.Migrations
                         {
                             UniversityId = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 5, 7, 18, 9, 34, 27, DateTimeKind.Local).AddTicks(3764),
-                            Name = "Universidad Nacional Del Nordeste"
+                            CreatedDate = new DateTime(2020, 5, 7, 17, 6, 30, 73, DateTimeKind.Local).AddTicks(4897),
+                            Name = "Universidad Nacional Del Nordeste",
+                            UpdatedBy = 0,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             UniversityId = 2,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 5, 7, 18, 9, 34, 27, DateTimeKind.Local).AddTicks(3843),
-                            Name = "Universidad de la Defensa Nacional"
+                            CreatedDate = new DateTime(2020, 5, 7, 17, 6, 30, 73, DateTimeKind.Local).AddTicks(4979),
+                            Name = "Universidad de la Defensa Nacional",
+                            UpdatedBy = 0,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             UniversityId = 3,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 5, 7, 18, 9, 34, 27, DateTimeKind.Local).AddTicks(3846),
-                            Name = "Universidad Austral"
+                            CreatedDate = new DateTime(2020, 5, 7, 17, 6, 30, 73, DateTimeKind.Local).AddTicks(4982),
+                            Name = "Universidad Austral",
+                            UpdatedBy = 0,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             UniversityId = 4,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 5, 7, 18, 9, 34, 27, DateTimeKind.Local).AddTicks(3848),
-                            Name = "Universidad Nacional del Arte (UNA)"
+                            CreatedDate = new DateTime(2020, 5, 7, 17, 6, 30, 73, DateTimeKind.Local).AddTicks(4984),
+                            Name = "Universidad Nacional del Arte (UNA)",
+                            UpdatedBy = 0,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -196,10 +214,10 @@ namespace UniversityPlatformApi.Migrations
                     b.Property<int>("UniversityId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UpdatedBy")
+                    b.Property<int>("UpdatedBy")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdatedDate")
+                    b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Username")
@@ -219,12 +237,14 @@ namespace UniversityPlatformApi.Migrations
                             UserId = 1,
                             Address = "Rivadavia",
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2020, 5, 7, 18, 9, 34, 11, DateTimeKind.Local).AddTicks(5105),
+                            CreatedDate = new DateTime(2020, 5, 7, 17, 6, 30, 57, DateTimeKind.Local).AddTicks(1284),
                             Email = "lisandrochichi@gmail.com",
                             FirstName = "Lisandro",
                             LastName = "Chichi",
-                            Password = "AQAAAAEAACcQAAAAEO0tDi2ucgn26a8pyQeKBX+AnIKO+gzDYjOJZPSSZb6i1y8Gyb5xJ6hsiUq0zYtnVg==",
+                            Password = "AQAAAAEAACcQAAAAEIpqF2vRb4zSliXJrRaIFua9S75fIqTrgSmO57OaQSBoAjOl1A7QFHCVZ1zCtXlQig==",
                             UniversityId = 1,
+                            UpdatedBy = 0,
+                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Username = "LisandroAdmin"
                         });
                 });
